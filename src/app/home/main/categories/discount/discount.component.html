@@ -1,0 +1,18 @@
+<div class="mt-[20px] bg-[#d9fae0] w-full p-2 flex flex-col items-center">
+  @if (isLoading) {
+  <h2>Loading...</h2>
+  } @else {
+  <h1 class="mt-[18px] text-[#46A358] text-4xl">
+    {{ discount.title }}
+  </h1>
+  }
+
+  <div class="mt-[11px] text-base font-bold">
+    @if (isLoading) {
+    <h2>Loading...</h2>
+    } @else {
+    <h2>UP TO {{ discount?.discoount_up_to }}% OFF</h2>
+    }
+  </div>
+  <img [src]="discount.poster_image_url" alt="" />
+</div>

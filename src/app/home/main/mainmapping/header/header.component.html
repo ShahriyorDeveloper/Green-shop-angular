@@ -1,0 +1,28 @@
+<div class="flex w-full">
+  <div class="flex gap-8 p-[5px] max-sm:gap-4">
+    <h3
+      (click)="onCategoryClick('all-plants')"
+      [class.text-green-500]="typeProps === 'all-plants'"
+      class="cursor-pointer"
+    >
+      All Plants
+    </h3>
+    <h3
+      (click)="onCategoryClick('new-arrivals')"
+      [class.text-green-500]="typeProps === 'new-arrivals'"
+      class="cursor-pointer"
+    >
+      New Arrivals
+    </h3>
+    <h3
+      (click)="onCategoryClick('sale')"
+      [class.text-green-500]="typeProps === 'sale'"
+      class="cursor-pointer"
+    >
+      Sale
+    </h3>
+  </div>
+  <!-- <div class="flex items-center justify-center gap-2 max-lg:hidden">
+    <p>Sort by:</p>
+  </div> -->
+</div>

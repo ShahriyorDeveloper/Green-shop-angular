@@ -1,0 +1,42 @@
+<p-carousel
+  [value]="products"
+  [numVisible]="1"
+  [numScroll]="1"
+  [circular]="false"
+  [responsiveOptions]="responsiveOptions"
+  autoplayInterval="3000"
+>
+  <ng-template let-product #item>
+    <div
+      class="h-[450px] bg-[#F5F5F5] mt-3 flex max-2xl:h-[400px] max-md:h-[300px] text-black"
+    >
+      <div class="flex-[2] pl-10">
+        <h3
+          class="font-medium text-base mt-[68px] max-lg:text-sm max-md:text-xs max-md:mt-[15px]"
+        >
+          {{ product.welcome }}
+        </h3>
+        <h1
+          class="font-black text-[#3D3D3D] text-8xl max-2xl:text-6xl max-lg:text-5xl max-md:text-2xl"
+        >
+          {{ product.name }} <span class="text-[#46A358]">PLANET</span>
+        </h1>
+        <p
+          class="text-sm font-normal text-[#727272] w-3/5 max-lg:text-xs mt-[10px]"
+        >
+          {{ product.description }}
+        </p>
+      </div>
+      <div
+        className="flex-[1] relative flex justify-center items-center max-md:hidden"
+      >
+        <img
+          src="https://firebasestorage.googleapis.com/v0/b/aema-image-upload.appspot.com/o/greenshop%2Fimages%2Fhero-flower-1.png?alt=media&token=74ea8d3d-06b5-41e7-bb12-7caaf3035a6d"
+          alt=""
+        />
+      </div>
+    </div>
+  </ng-template>
+</p-carousel>
+
+<app-main />

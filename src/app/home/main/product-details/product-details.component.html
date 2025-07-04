@@ -1,0 +1,202 @@
+<div class="container mx-auto px-4 py-8">
+  <!-- Breadcrumb -->
+  <div class="text-sm text-gray-500 mb-6">
+    <a href="/" class="hover:text-green-600">Home</a>
+    <span class="mx-2">/</span>
+    <span>Shop</span>
+  </div>
+
+  <div class="flex flex-col md:flex-row gap-8">
+    <!-- Product Gallery -->
+    <div class="md:w-1/2">
+      <div class="flex flex-col md:flex-row gap-4">
+        <!-- Thumbnails -->
+        <div class="flex md:flex-col gap-2 order-2 md:order-1 mt-4 md:mt-0">
+          <div
+            *ngFor="let img of productDetails?.detailed_images; let i = index"
+            class="border border-gray-200 w-28 h-28 cursor-pointer"
+            [class.border-green-500]="selectedImage === i"
+            (click)="selectImage(i)"
+          >
+            <img
+              [src]="img"
+              alt="Product thumbnail"
+              class="w-full h-full object-cover p-2"
+            />
+          </div>
+        </div>
+
+        <!-- Main Image -->
+        <div
+          class="flex-1 flex h-[470px] justify-center order-1 md:order-2 border"
+        >
+          <img
+            [src]="
+              selectedImage !== null
+                ? productDetails.detailed_images[selectedImage]
+                : productDetails?.main_image
+            "
+            alt="Product image"
+            class="w-full h-auto text-center object-contain"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Info -->
+    <div class="md:w-1/2">
+      <div class="flex items-center gap-4 mb-2">
+        <img
+          [src]="productDetails?.main_image"
+          alt="Brand logo"
+          class="w-12 h-12 rounded-full"
+        />
+        <h1 class="text-3xl font-bold">{{ productDetails?.title }}</h1>
+      </div>
+
+      <div class="text-2xl text-green-600 font-semibold mb-4">
+        ${{ productDetails?.price }}
+      </div>
+
+      <!-- Ratings -->
+      <div class="flex items-center gap-2 mb-6">
+        <div class="flex">
+          <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-gray-300"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+              />
+            </svg>
+          </ng-container>
+        </div>
+        <span class="text-sm text-gray-600"> Customer Review</span>
+      </div>
+
+      <!-- Description -->
+      <div class="mb-6">
+        <h2 class="text-xl font-semibold mb-2">Short Description:</h2>
+        <p class="text-gray-700">{{ productDetails?.short_description }}</p>
+      </div>
+
+      <!-- Size Options -->
+      <div class="mb-6">
+        <h2 class="text-xl font-semibold mb-2">Size:</h2>
+        <div class="flex gap-2">
+          <button
+            *ngFor="let size of sizes"
+            class="w-10 h-10 flex items-center justify-center border rounded-md"
+            [class.bg-green-500]="selectedSize === size"
+            [class.text-white]="selectedSize === size"
+            [class.border-green-500]="selectedSize === size"
+            (click)="selectSize(size)"
+          >
+            {{ size }}
+          </button>
+        </div>
+      </div>
+
+      <!-- Quantity -->
+      <div class="flex items-center gap-2 mb-6">
+        <button
+          class="w-10 h-10 bg-green-500 text-white rounded-full flex items-center justify-center"
+        >
+          -
+        </button>
+        <span class="text-xl w-10 text-center">1</span>
+        <button
+          class="w-10 h-10 bg-green-500 text-white rounded-full flex items-center justify-center"
+        >
+          +
+        </button>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap gap-4 mb-6">
+        <button
+          class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-md transition"
+        >
+          BUY NOW
+        </button>
+        <button
+          class="border border-gray-300 hover:border-green-500 px-6 py-3 rounded-md transition"
+        >
+          ADD TO CARD
+        </button>
+        <button
+          class="border border-gray-300 hover:border-red-500 w-12 h-12 rounded-md flex items-center justify-center transition"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 text-gray-500 hover:text-red-500"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Product Details -->
+      <div class="border-t border-gray-200 pt-4">
+        <div class="mb-2">
+          <span class="text-gray-600">SKU: </span>
+          <span>{{ productDetails?.created_by }}</span>
+        </div>
+        <div class="mb-2">
+          <span class="text-gray-600">Categories: </span>
+          <span>{{ productDetails?.category }}</span>
+        </div>
+        <div class="mb-2">
+          <span class="text-gray-600">Tags: </span>
+          Home, Garden, Plants
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Tabs -->
+  <div class="mt-12">
+    <div class="border-b border-gray-200">
+      <div class="flex flex-wrap -mb-px">
+        <button
+          *ngFor="let tab of tabs; let i = index"
+          class="inline-block py-4 px-6 border-b-2 font-medium text-sm"
+          [class.border-green-500]="activeTab === i"
+          [class.text-green-600]="activeTab === i"
+          [class.border-transparent]="activeTab !== i"
+          [class.text-gray-500]="activeTab !== i"
+          (click)="setActiveTab(i)"
+        >
+          {{ tab }}
+        </button>
+      </div>
+    </div>
+    <div class="py-6">
+      <div *ngIf="activeTab === 0" class="prose max-w-none">
+        <p>{{ productDetails?.description }}</p>
+      </div>
+      <div *ngIf="activeTab === 1">
+        <div *ngIf="productDetails?.reviewCount === 0" class="text-center py-8">
+          <p class="text-gray-500">
+            No reviews yet. Be the first to review this product.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
